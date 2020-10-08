@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Card from './components/Card'
+class App extends Component {
+  
+  state = {
+    characters: [],
+    house: ""
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  componentDidMount() {
+    fetch('http://hp-api.herokuapp.com/api/characters')
+      .then(response => response.json())
+      .then(characters => this.setState({characters: characters}))
+  }
+
+  setHouseState = (event) => {
+    return this.setState({house: event.target.innerText})
+  }
+
+  renderHouse = () => this.state.characters.map(character => {
+      return <Card character={character} house={this.state.house}/>
+    })
+  
+  render() {
+    return (
+      <div className="App">
+        <button onClick={this.setHouseState}>Gryffindor</button>
+        <button onClick={this.setHouseState}>Slytherin</button>
+        <button onClick={this.setHouseState}>Hufflepuff</button>
+        <button onClick={this.setHouseState}>Ravenclaw</button>
+        {this.state.house === "" ? null : this.renderHouse()}
+      </div>
+    );
+  }
 }
 
 export default App;
