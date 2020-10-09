@@ -1,12 +1,37 @@
-.container {
-  display: flex;
-  flex-wrap: row wrap;
-  justify-content: space-between;
-}
-
-/* .card {
+.App {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 100%;
+}
 
-} */
+header {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+main {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+
+}
+
+.card {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: ;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+}
